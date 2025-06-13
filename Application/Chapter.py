@@ -4,11 +4,11 @@ import requests
 import re
 from selenium.webdriver.remote.webelement import WebElement
 
-VERSE_ELEMENTS = "span.verse[observevisibility]"
 
 class Chapter(IChapter):
-    def __init__(self, chapter_ref: WebElement):
+    def __init__(self, chapter_ref: WebElement, chapter_number):
         self._chapter_ref = chapter_ref # <a> tag
+        self._chapter_number = chapter_number
 
     def getChapterAbbreviation(self) -> str:
         url = self._chapter_ref.get_attribute("href").strip()
@@ -31,11 +31,25 @@ class Chapter(IChapter):
             raise RuntimeError(f"Failed to fetch chapter page: {e}")
 
         soup = BeautifulSoup(response.text, "html.parser")
-        verse_elems = soup.select(VERSE_ELEMENTS)
+
+        BASE_ID = f"{self.getChapterAbbreviation()}.{self._chapter_number}."
 
         verses = []
-        for verse in (verse_elems):
-            text = verse.get_text(strip=True)
-            verses.append(text)
+        i = 1
+
+        while True:
+            verse_id = f"{BASE_ID}{i}"
+
+            verse_elems = soup.find_all(attrs={"data-verse-org-id": verse_id})
+
+            if not verse_elems:
+                break  # No more verses
+
+            verse_text = " ".join(v.get_text(strip=True) for v in verse_elems)
+            verses.append(verse_text)
+            i += 1
 
         return verses
+
+
+

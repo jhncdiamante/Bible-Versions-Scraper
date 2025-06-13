@@ -79,7 +79,7 @@ class BibleWebsite(Subject, IWebsite):
 
     def _scrape_chapter(self, chapter_element, chapter_number):
         self._go_to_element(chapter_element)
-        chapter_scraper = self._chapter(chapter_element)
+        chapter_scraper = self._chapter(chapter_element, chapter_number)
         verses = chapter_scraper.getAllVerses()
         chap_abv = chapter_scraper.getChapterAbbreviation()
         print(f"Found {len(verses)} verse/s.")
