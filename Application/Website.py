@@ -49,6 +49,7 @@ class BibleWebsite(Subject, IWebsite):
             self._cookie_handler.clickAllowCookiesButton()
         except Exception:
             pass
+        time.sleep(3)
 
     def scrape(self) -> None:
         self._menu.open() # Open the menu
