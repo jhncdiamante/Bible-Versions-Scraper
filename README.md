@@ -90,7 +90,7 @@ Here are some screenshots demonstrating the website scraping process:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/BibleWebsite.git
+git clone https://github.com/jhncdiamante/BibleBookVersionsScraper.git
 cd BibleWebsite
 ```
 
