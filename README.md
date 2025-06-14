@@ -11,38 +11,34 @@ A Python-based web scraping tool designed to extract biblical text data from die
 ## Sample Usage
 
 ```
-from .Website import BibleWebsite
-from Driver.NormalDriver import NormalDriver
-from .Menu import Menu
-from .Book import Book
-from .Chapter import Chapter
-from .CookieHandler import CookieHandler
-from Data.TextDatabase import TextDatabase
+# imports
 
 BASE_URL = "https://www.die-bibel.de/en/bible/"
-BOOKS = ["BHS", "LXX", "VUL", "UBS5"]
+
+VERSION = "LXX"
+
 
 driver = NormalDriver()
 driver.set_up_driver()
-driver_handle = driver.driver
+driver_handle = driver.driver 
 
 menu_handler = Menu(driver_handle)
 cookie_handler = CookieHandler(driver_handle)
 
-for i in range(len(BOOKS)):
-    website = BibleWebsite(
-        f"{BASE_URL}{BOOKS[i]}",
-        driver=driver_handle,
-        menu=menu_handler,
-        book=Book,       
-        chapter=Chapter,
-        cookie_handler=cookie_handler
-    )
-    print("Scraping", BOOKS[i])
-    text_db = TextDatabase(BOOKS[i])
-    website.attach(text_db)
-    website.open()
-    website.scrape()
+
+website = BibleWebsite(
+    f"{BASE_URL}{VERSION}",
+    driver=driver_handle,
+    menu=menu_handler,
+    book=Book,       
+    chapter=Chapter,
+    cookie_handler=cookie_handler
+)
+print("Scraping", VERSION)
+text_db = TextDatabase(VERSION)
+website.attach(text_db)
+website.open()
+website.scrape()
 
 ```
 ## Project Structure
