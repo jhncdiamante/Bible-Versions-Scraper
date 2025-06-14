@@ -1,6 +1,6 @@
 # Bible Website Scraper
 
-A Python-based web scraping tool designed to extract biblical text data from die-bibel.de. This project systematically scrapes and organizes biblical content from multiple versions including Biblia Hebraica Stuttgartensia (BHS), Septuagint (LXX), Holy Bible Vulgate (VUL), and Greek New Testament(UBS5).
+A Python-based web scraping tool designed to extract biblical text data from die-bibel.de. This project systematically scrapes and organizes biblical content from multiple versions including Biblia Hebraica Stuttgartensia (BHS), Septuagint (LXX), Holy Bible Vulgate (VUL), and Greek New Testament (UBS5).
 
 ## Features
 
