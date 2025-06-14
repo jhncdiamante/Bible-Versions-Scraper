@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 import requests
 import re
 from selenium.webdriver.remote.webelement import WebElement
+from collections import defaultdict
 
+VERSE_ELEMENTS = "span.verse[observevisibility]"
+VERSE_IDENTIFIER = 'data-verse-org-id'
 
 class Chapter(IChapter):
     def __init__(self, chapter_ref: WebElement, chapter_number):
@@ -16,6 +19,7 @@ class Chapter(IChapter):
         if match:
             return match.group(1)
         raise ValueError("Chapter ABV not found in URL:", url)
+        
 
     def getAllVerses(self) -> list[str]:
         href = self._chapter_ref.get_attribute("href")
@@ -32,24 +36,20 @@ class Chapter(IChapter):
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        BASE_ID = f"{self.getChapterAbbreviation()}.{self._chapter_number}."
+        verse_elements = soup.select(VERSE_ELEMENTS)
 
-        verses = []
-        i = 1
+        verses = defaultdict(str)
 
-        while True:
-            verse_id = f"{BASE_ID}{i}"
-
-            verse_elems = soup.find_all(attrs={"data-verse-org-id": verse_id})
-
-            if not verse_elems:
-                break  # No more verses
-
-            verse_text = " ".join(v.get_text(strip=True) for v in verse_elems)
-            verses.append(verse_text)
-            i += 1
+        for v_elem in verse_elements:
+            verse_number = self._getVerseNumber(verse_element=v_elem)
+            verse_content = v_elem.get_text(strip=True)
+            verses[verse_number] += f" {verse_content}"
 
         return verses
 
 
-
+    def _getVerseNumber(self, verse_element):
+        verse_id = verse_element.get(VERSE_IDENTIFIER)
+        if "." in verse_id:
+            return verse_id.split(".")[-1]
+        raise ValueError(f"Invalid verse ID found: {verse_id}")

@@ -13,7 +13,6 @@ class CookieHandler(ICookieHandler):
     def __init__(self, driver: WebDriver):
         self._driver = driver
 
-    @retryable(max_retries=3, delay=5, exceptions=(TimeoutException, ))
     def clickAllowCookiesButton(self) -> None:
         allow_all_button = WebDriverWait(self._driver, 30).until(
             EC.element_to_be_clickable((By.ID, ALLOW_BUTTON_ID))

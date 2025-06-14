@@ -23,17 +23,20 @@ class Menu(IMenu):
         container = WebDriverWait(self._driver, 60).until(
             EC.visibility_of_element_located((By.TAG_NAME, MENU_BUTTON_CONTAINER))
         )
+        print("Found container.")
         # get menu button
         menu_button = WebDriverWait(container, 60).until(
             EC.element_to_be_clickable((By.TAG_NAME, MENU_BUTTON))
         )
 
         menu_button.click()
+        print("Menu Button clicked.")
 
         # wait for menu panel to appear after the menu button is clicked
         WebDriverWait(self._driver, 30).until(
             EC.visibility_of_element_located((By.TAG_NAME, MENU_PANE))
         )
+        print("Menu panel found.")
         
     
     @retryable(max_retries=3, delay=2, exceptions=(TimeoutException, NoSuchElementException,))
