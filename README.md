@@ -76,6 +76,7 @@ Here are some screenshots demonstrating the website scraping process:
 ![Scraping Process Step 2](Illustrations/2.png)
 ![Scraping Process Step 3](Illustrations/3.png)
 ![Scraping Process Step 4](Illustrations/4.png)
+## Sample Verse (for Demonstration Purposes Only)
 
 ![Output Format](Illustrations/output_format.png)
 
@@ -129,6 +130,7 @@ Example: For bible version 'BHS'
 ```
 
 
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -151,4 +153,8 @@ By using this software, you acknowledge and agree to these terms.
 
 This project is fully customizable.  
 Feel free to modify it to suit your specific needs.
+
+## Source Attribution
+- Biblia Hebraica Stuttgartensia, hg. v. Karl Elliger und Wilhelm Rudolph, fünfte, verbesserte Auflage, hg. v. Adrian Schenker, © 1977 und 1997 Deutsche Bibelgesellschaft, Stuttgart
+
 
