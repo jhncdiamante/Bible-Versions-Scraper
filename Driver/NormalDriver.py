@@ -5,8 +5,7 @@ import undetected_chromedriver as uc
 class NormalDriver(IDriver):
     def __init__(self):
         self._driver = None
-        self.chrome_options = Options()
-
+        self.chrome_options = uc.ChromeOptions()
     def set_up_options(self):
         args = [ 
             "--disable-gpu", "--ignore-certificate-errors", "--ignore-ssl-errors=yes",

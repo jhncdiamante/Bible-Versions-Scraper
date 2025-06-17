@@ -9,7 +9,7 @@ from Data.TextDatabase import TextDatabase
 BASE_URL = "https://www.die-bibel.de/en/bible/"
 VERSIONS = ["BHS", "LXX", "VUL", "UBS5"]
 
-VERSION = VERSIONS[0] # replace index [0] = BHS, [1] = LXX, ...
+VERSION = VERSIONS[2] # replace index [0] = BHS, [1] = LXX, ...
 
 
 driver = NormalDriver()
