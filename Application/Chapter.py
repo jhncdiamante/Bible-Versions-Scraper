@@ -43,7 +43,7 @@ class Chapter(IChapter):
         for v_elem in verse_elements:
             verse_number = self._getVerseNumber(verse_element=v_elem)
             verse_content = v_elem.get_text(strip=True)
-            verses[verse_number] += f" {verse_content}"
+            verses[verse_number] += f"{verse_content}"
 
         return verses
 
